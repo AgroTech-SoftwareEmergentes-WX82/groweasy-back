@@ -37,6 +37,4 @@ public class ValueTransactionHistory {
     @JoinColumn(name = "device_id")
     private Device device;
 
-
-
 }
