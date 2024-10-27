@@ -20,6 +20,8 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import wx82.agrotech.groweasyapi.device.Device;
+import wx82.agrotech.groweasyapi.iot.Sensor;
 import wx82.agrotech.groweasyapi.role.Role;
 
 import java.security.Principal;
@@ -55,6 +57,13 @@ public class User implements UserDetails, Principal {
     private boolean enabled;
     @ManyToMany(fetch = EAGER)
     private List<Role> roles;
+
+    @OneToMany(mappedBy = "user")
+    private List<Device> devices;
+
+    @OneToMany(mappedBy = "user")
+    private List<Sensor> sensor;
+
 
     @CreatedDate
     @Column(nullable = false, updatable = false)
