@@ -27,6 +27,7 @@ public class ValueTransactionHistoryService {
 
     public Integer save(ValueTransactionHistoryRequest request) {
         ValueTransactionHistory valueHistory = valueTransactionHistoryMapper.toValueTransactionHistory(request);
+        // value request
         return valueRepository.save(valueHistory).getId();
     }
 

@@ -10,7 +10,7 @@ import wx82.agrotech.groweasyapi.device.DeviceResponse;
 import wx82.agrotech.groweasyapi.history.ValueTransactionHistoryRequest;
 
 import java.util.List;
-
+/*
 @RestController
 @RequestMapping("sensors")
 @RequiredArgsConstructor
@@ -41,4 +41,4 @@ public class SensorController {
         return ResponseEntity.ok(service.getLastLuminosity(connectedUser));
     }
 
-}
+}*/
