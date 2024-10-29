@@ -1,6 +1,7 @@
 package wx82.agrotech.groweasyapi.history;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.mail.MessagingException;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -24,9 +25,10 @@ public class ValueTransactionController {
 
     @PostMapping
     public ResponseEntity<Integer> saveValue(
-            @Valid @RequestBody ValueTransactionHistoryRequest request
-    ){
-        return ResponseEntity.ok(service.save(request));
+            @Valid @RequestBody ValueTransactionHistoryRequest request,
+            Authentication connectedUser
+    ) throws MessagingException {
+        return ResponseEntity.ok(service.save(request, connectedUser));
     }
 
     @GetMapping("/device/{device-id}")
