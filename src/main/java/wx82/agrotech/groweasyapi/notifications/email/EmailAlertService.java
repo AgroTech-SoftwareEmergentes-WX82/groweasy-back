@@ -42,7 +42,9 @@ public class EmailAlertService {
         if (emailTemplate == null) {
             templateName = "alert-email";
         } else {
+            log.error(emailTemplate.name());
             templateName = emailTemplate.name();
+            log.info(templateName);
         }
 
         MimeMessage mimeMessage = mailSender.createMimeMessage();
@@ -71,7 +73,8 @@ public class EmailAlertService {
         helper.setSubject(subject);
 
 
-        String template = templateEngine.process(templateName, context);
+        String template = templateEngine.process(templateName.toLowerCase(), context);
+        log.info(templateName.toLowerCase());
 
         helper.setText(template, true);
         log.info(template + ": " + mimeMessage);
