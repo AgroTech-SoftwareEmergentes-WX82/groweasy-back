@@ -72,7 +72,7 @@ public class EmailAlertService {
         helper.setTo(to);
         helper.setSubject(subject);
 
-        log.info("before ..");
+        log.info("before ....");
         String template = templateEngine.process(templateName.toLowerCase(), context);
         log.info(templateName.toLowerCase());
 
