@@ -71,7 +71,7 @@ public class EmailAlertService {
         String template = templateEngine.process(templateName, context);
 
         helper.setText(template, true);
-        log.info(template + ": " + mimeMessage);
+        log.info("template" + template + ": " + mimeMessage);
         mailSender.send(mimeMessage);
 
     }
