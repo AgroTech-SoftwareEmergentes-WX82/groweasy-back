@@ -50,7 +50,6 @@ public class EmailService {
         properties.put("username", username);
         properties.put("confirmationUrl", confirmationUrl);
         properties.put("activation_code", activationCode);
-        System.out.println(properties.toString());
 
         Context context = new Context();
         context.setVariables(properties);
@@ -62,7 +61,6 @@ public class EmailService {
         String template = templateEngine.process(templateName, context);
 
         helper.setText(template, true);
-        System.out.println(template +": "+mimeMessage);
         mailSender.send(mimeMessage);
     }
 }

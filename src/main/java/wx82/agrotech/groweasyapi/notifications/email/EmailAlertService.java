@@ -42,19 +42,15 @@ public class EmailAlertService {
         if (emailTemplate == null) {
             templateName = "alert-email";
         } else {
-            log.error(emailTemplate.name());
             templateName = emailTemplate.name();
-            log.info(templateName);
         }
 
         MimeMessage mimeMessage = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(
                 mimeMessage,
-                true,
+                MULTIPART_MODE_MIXED,
                 UTF_8.name()
         );
-        log.info(String.valueOf(MULTIPART_MODE_MIXED));
-        log.info(UTF_8.name());
 
         Map<String, Object> properties = new HashMap<>();
         properties.put("username", username);
@@ -63,7 +59,6 @@ public class EmailAlertService {
         properties.put("unitOfmeasure", unitOfmeasure);
         properties.put("message", message);
         properties.put("webControlDeviceUrl", webControlDeviceUrl);
-        log.info(properties.toString());
 
         Context context = new Context();
         context.setVariables(properties);
@@ -72,9 +67,8 @@ public class EmailAlertService {
         helper.setTo(to);
         helper.setSubject(subject);
 
-        log.info("before ....");
-        String template = templateEngine.process(templateName.toLowerCase(), context);
-        log.info(templateName.toLowerCase());
+
+        String template = templateEngine.process(templateName, context);
 
         helper.setText(template, true);
         log.info(template + ": " + mimeMessage);
