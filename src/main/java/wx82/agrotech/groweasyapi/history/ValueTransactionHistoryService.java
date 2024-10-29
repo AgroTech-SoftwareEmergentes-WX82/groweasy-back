@@ -1,16 +1,9 @@
 package wx82.agrotech.groweasyapi.history;
 
-import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
-import wx82.agrotech.groweasyapi.email.EmailTemplateName;
-import wx82.agrotech.groweasyapi.notifications.NotificationResponse;
-import wx82.agrotech.groweasyapi.notifications.NotificationService;
-import wx82.agrotech.groweasyapi.notifications.email.EmailAlertService;
-import wx82.agrotech.groweasyapi.notifications.email.EmailTemplateAlert;
 import wx82.agrotech.groweasyapi.statistics.StaticsSensor;
 import wx82.agrotech.groweasyapi.user.User;
 import wx82.agrotech.groweasyapi.util.DateTimeUtil;
@@ -32,20 +25,9 @@ public class ValueTransactionHistoryService {
     private final ValueTransactionHistoryRepository valueRepository;
     private final ValueTransactionHistoryMapper valueTransactionHistoryMapper;
 
-    private final EmailAlertService emailAlertService;
-    private final NotificationService notificationService;
-
-    @Value("${application.mailing.frontend.webControlDeviceUrl}")
-    private String webControlDeviceUrl;
-
-    public Integer save(ValueTransactionHistoryRequest request, Authentication connectedUser) throws MessagingException {
-        User user = ((User) connectedUser.getPrincipal());
+    public Integer save(ValueTransactionHistoryRequest request) {
         ValueTransactionHistory valueHistory = valueTransactionHistoryMapper.toValueTransactionHistory(request);
-        NotificationResponse notificationResponse = notificationService.findNotificationByIdUserAndIdDevice(request.deviceId(), user.getId());
-        log.info("Notification Response: " + notificationResponse.toString());
-        if(request.value() > notificationResponse.getThreshold()){
-            sendAlertEmail(notificationResponse, user, request);
-        }
+        // value request
         return valueRepository.save(valueHistory).getId();
     }
 
@@ -99,20 +81,6 @@ public class ValueTransactionHistoryService {
         }
 
         return statistics;
-    }
-
-    private void sendAlertEmail(NotificationResponse notificationResponse, User user, ValueTransactionHistoryRequest request) throws MessagingException {
-        emailAlertService.sendEmail(
-                notificationResponse.getEmail(),
-                user.fullName(),
-                notificationResponse.getNameDevice(),
-                request.value(),
-                request.unitOfMeasure(),
-                notificationResponse.getMessage(),
-                EmailTemplateAlert.ACTIVATE_ALERT,
-                webControlDeviceUrl,
-                "Alerta de Dispositivo"
-        );
     }
 
 

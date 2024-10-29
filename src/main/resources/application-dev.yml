@@ -25,6 +25,7 @@ spring:
           auth: true
           starttls:
             enable: true
+            required: true
 
 
 application:
@@ -37,7 +38,6 @@ application:
   mailing:
     frontend:
       activation-url: http://localhost:4200/activate-account
-      webControlDeviceUrl: http://localhost:4200/device
 
   file:
     uploads:
