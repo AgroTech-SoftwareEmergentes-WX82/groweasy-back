@@ -58,6 +58,7 @@ public class EmailService {
         helper.setTo(to);
         helper.setSubject(subject);
 
+        //convert at to lowerCase
         String template = templateEngine.process(templateName.toLowerCase(), context);
 
         helper.setText(template, true);
