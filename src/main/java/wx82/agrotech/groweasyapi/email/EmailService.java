@@ -58,7 +58,7 @@ public class EmailService {
         helper.setTo(to);
         helper.setSubject(subject);
 
-        String template = templateEngine.process(templateName, context);
+        String template = templateEngine.process(templateName.toLowerCase(), context);
 
         helper.setText(template, true);
         mailSender.send(mimeMessage);
