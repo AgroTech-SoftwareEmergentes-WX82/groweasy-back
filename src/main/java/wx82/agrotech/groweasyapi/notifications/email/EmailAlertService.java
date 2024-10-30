@@ -68,7 +68,7 @@ public class EmailAlertService {
         helper.setSubject(subject);
 
 
-        String template = templateEngine.process(templateName, context);
+        String template = templateEngine.process(templateName.toLowerCase(), context);
 
         helper.setText(template, true);
         log.info(template + ": " + mimeMessage);
