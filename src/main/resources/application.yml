@@ -1,6 +1,4 @@
 spring:
-  application:
-    name: groweasy-api
   profiles:
     active: dev
   servlet:
