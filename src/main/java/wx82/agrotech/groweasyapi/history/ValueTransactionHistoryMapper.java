@@ -2,7 +2,6 @@ package wx82.agrotech.groweasyapi.history;
 
 import org.springframework.stereotype.Service;
 import wx82.agrotech.groweasyapi.device.Device;
-import wx82.agrotech.groweasyapi.statistics.StaticsSensor;
 
 @Service
 public class ValueTransactionHistoryMapper {

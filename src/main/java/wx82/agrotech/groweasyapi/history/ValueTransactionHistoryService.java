@@ -6,7 +6,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
-import wx82.agrotech.groweasyapi.email.EmailTemplateName;
 import wx82.agrotech.groweasyapi.notifications.NotificationResponse;
 import wx82.agrotech.groweasyapi.notifications.NotificationService;
 import wx82.agrotech.groweasyapi.notifications.email.EmailAlertService;
@@ -22,7 +21,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 
 @Slf4j

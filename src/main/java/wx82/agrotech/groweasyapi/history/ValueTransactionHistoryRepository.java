@@ -3,11 +3,10 @@ package wx82.agrotech.groweasyapi.history;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import wx82.agrotech.groweasyapi.statistics.StaticsSensor;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
+
 
 public interface ValueTransactionHistoryRepository extends JpaRepository<ValueTransactionHistory, Integer> {
 
