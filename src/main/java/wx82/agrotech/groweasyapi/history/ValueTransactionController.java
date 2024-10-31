@@ -33,7 +33,7 @@ public class ValueTransactionController {
     ){
         return ResponseEntity.ok(service.findAllValuesHistory(deviceId));
     }
-
+    // last value sensor
     @GetMapping("/lastValueSensor/{device-id}")
     public ResponseEntity<ValueTransactionHistoryResponse> getLastValueSensor(
             @PathVariable("device-id") Integer deviceId) {
