@@ -18,8 +18,8 @@ public interface ValueTransactionHistoryRepository extends JpaRepository<ValueTr
     """)
     List<ValueTransactionHistory> findAllByTransactionId(@Param("valueDeviceId") Integer valueDeviceId);
 
-    @Query(value = "SELECT v.VALUE FROM VALUES v WHERE DEVICE_ID = :idDevice ORDER BY v.CREATED_DATE DESC LIMIT 1", nativeQuery = true)
-    Optional<Double> findLastTemperatureByUserId(@Param("idDevice") Integer idDevice);
+    @Query(value = "SELECT * FROM VALUES v WHERE DEVICE_ID = :idDevice ORDER BY v.CREATED_DATE DESC LIMIT 1", nativeQuery = true)
+    ValueTransactionHistory findLastTemperatureByUserId(@Param("idDevice") Integer idDevice);
 
     @Query(value = """
         SELECT 

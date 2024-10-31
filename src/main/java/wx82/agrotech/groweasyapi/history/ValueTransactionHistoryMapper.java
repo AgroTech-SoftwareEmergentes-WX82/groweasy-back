@@ -27,9 +27,5 @@ public class ValueTransactionHistoryMapper {
                 .build();
     }
 
-    public StaticsSensor toStaticsSenor(ValueTransactionHistory valueResponse){
-        return StaticsSensor.builder()
-                .build();
-    }
 
 }

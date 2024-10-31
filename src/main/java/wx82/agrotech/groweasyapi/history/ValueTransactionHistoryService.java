@@ -22,6 +22,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 @Slf4j
@@ -56,9 +57,12 @@ public class ValueTransactionHistoryService {
                 .toList();
     }
 
-    public Double getLastValueSensor(Integer idDevice){
-        return valueRepository.findLastTemperatureByUserId(idDevice)
-                .orElseThrow(() -> new RuntimeException("Sensor not found or Sensor not value"));
+    public ValueTransactionHistoryResponse getLastValueSensor(Integer idDevice) {
+        ValueTransactionHistory valueSensor = valueRepository.findLastTemperatureByUserId(idDevice);
+        if (valueSensor == null) {
+            throw new RuntimeException("Sensor not found or Sensor has no value");
+        }
+        return valueTransactionHistoryMapper.toValueTransactionHistoryResponse(valueSensor);
     }
 
     public List<StaticsSensor> getValueSensorStatistics(String startDateString, String endDateString, Long deviceId) {
