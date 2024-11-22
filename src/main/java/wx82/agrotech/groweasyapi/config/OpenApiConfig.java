@@ -26,16 +26,6 @@ import io.swagger.v3.oas.annotations.servers.Server;
                 ),
                 termsOfService = "Terms of service"
         ),
-        servers = {
-                @Server(
-                        description = "Local ENV",
-                        url = "http://localhost:8088/api/v1"
-                ),
-                @Server(
-                        description = "PROD ENV",
-                        url = "https://groweasy-back-crecaxa8h3a8cvg8.canadacentral-01.azurewebsites.net/api/v1"
-                )
-        },
         security = {
                 @SecurityRequirement(
                         name = "bearerAuth"
